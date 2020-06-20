@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  dns:
+    image: dns
+    build: .
+    restart: always
+    container_name: dns
+    hostname: dns
+    networks:
+      - dns
+    volumes:
+      - dns:/etc/dns
+    ports:
+      - 53:53
+      - 5380:5380
+#optional labels for traefik
+#    labels:
+#     - "traefik.backend=dns"
+#     - "traefik.docker.network=dns"
+#     - "traefik.frontend.rule=Host:dns.media.tom"
+#     - "traefik.enable=true"
+#     - "traefik.port=5380"
+networks:
+  dns:   
+   
+volumes:
+  dns:
