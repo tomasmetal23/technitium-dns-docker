@@ -2,8 +2,8 @@ version: "3"
 
 services:
   dns:
-    image: deathmetall/technitiumdns:latest
-#    build: .
+#    image: deathmetall/technitiumdns:latest
+    build: .
     restart: always
     container_name: dns
     hostname: dns
@@ -16,11 +16,12 @@ services:
       - 5380:5380
 #optional labels for traefik
 #    labels:
-#     - "traefik.backend=dns"
-#     - "traefik.docker.network=dns"
-#     - "traefik.frontend.rule=Host:dns.media.tom"
-#     - "traefik.enable=true"
-#     - "traefik.port=5380"
+#      - "traefik.enable=true"
+#      - "traefik.http.routers.dns.entrypoints=websecure"
+#      - "traefik.http.routers.dns.tls.certresolver=lets-encr"
+#      - "traefik.http.routers.dns.rule=Host(`dns.example.com`)"
+#      - "traefik.http.services.dns.loadbalancer.server.port=5380"
+
 networks:
   dns:   
    
