@@ -1,26 +1,20 @@
-ARG REPO=mcr.microsoft.com/dotnet/core/runtime-deps
-FROM $REPO:3.1-buster-slim
+ARG REPO=mcr.microsoft.com/dotnet/core/runtime-
+ARG DOTNET_VERSION=5.0.3
+FROM amd64/buildpack-deps:buster-curl as installer
+ARG DOTNET_VERSION
 LABEL maintainer="tomas@saiyans.com.ve"
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        curl \
-    && apt-get install -y --no-install-recommends \
-        wget \
-    && rm -rf /var/lib/apt/lists/*
-    # Install .NET Core
-RUN dotnet_version=3.1.5 \
-    && curl -SL --output dotnet.tar.gz https://dotnetcli.azureedge.net/dotnet/Runtime/$dotnet_version/dotnet-runtime-$dotnet_version-linux-x64.tar.gz \
-    && dotnet_sha512='b88e110df7486266e3850d26617290cdee13b20dabc6fbe62bcac052d93cd7e76f787722a5beb15b06673577a47ba26943530cb14913569a25d9f55df029f306' \
+# Retrieve .NET
+RUN curl -SL --output dotnet.tar.gz https://dotnetcli.azureedge.net/dotnet/Runtime/$DOTNET_VERSION/dotnet-runtime-$DOTNET_VERSION-linux-x64.tar.gz \
+    && dotnet_sha512='263dbe260123c3d6d706ed8b5f4d510d9384216422e9af0d293df87ed98e84e1e0ffbf0c7dd543c40c5ccc95bd7cd006c8bbbe9f1cd1f060b1eaa2f7a60fea74' \
     && echo "$dotnet_sha512 dotnet.tar.gz" | sha512sum -c - \
-    && mkdir -p /usr/share/dotnet \
-    && tar -ozxf dotnet.tar.gz -C /usr/share/dotnet \
+    && mkdir -p /dotnet \
+    && tar -ozxf dotnet.tar.gz -C /dotnet \
     && rm dotnet.tar.gz \
-    && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet \
-    && wget https://download.technitium.com/dns/DnsServerPortable.tar.gz \
+    && ln -s /dotnet/dotnet /usr/bin/dotnet \
+    && curl -O https://download.technitium.com/dns/DnsServerPortable.tar.gz \
     && mkdir -p /etc/dns/ \
     && tar -zxf DnsServerPortable.tar.gz -C /etc/dns/ \
-    && chmod u+x /etc/dns/start.sh \
     && rm DnsServerPortable.tar.gz 
 
 VOLUME /etc/dns
