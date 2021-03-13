@@ -1,5 +1,10 @@
 # Technitium dns server 
 
+ ## Software information version
+ * Technitium Version 5.6
+ * DOTNET_VERSION=5.0.3
+ 
+ ## Run deploy
 
 A simple dns server to manage with a graphical interface visible from the browser through port 5380 
 
