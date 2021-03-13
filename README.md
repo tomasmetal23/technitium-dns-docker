@@ -10,3 +10,5 @@ Inside the folder repo make your personal settings in the compose you can enable
 ``` $ docker-compose up -d ```
 
 ![Done](https://i.imgur.com/FXecqoG.png)
+
+https://hub.docker.com/r/deathmetall/technitiumdns
