@@ -2,24 +2,24 @@ version: "3"
 
 services:
   dns:
-    image: deathmetall/technitiumdns:latest
- #   build: .
+    image: deathmetall/technitiumdns:latest-6.0
+#    build: .
     restart: always
     container_name: dns
     hostname: dns
     networks:
       - dns
     volumes:
-      - dns:/etc/dns
+      - dns:/etc/dns/config
     ports:
-      - 53:53
-      - 5380:5380
+      - "53:53/udp"
+      - "5380:5380"
 #optional labels for traefik
 #    labels:
 #      - "traefik.enable=true"
 #      - "traefik.http.routers.dns.entrypoints=websecure"
 #      - "traefik.http.routers.dns.tls.certresolver=lets-encr"
-#      - "traefik.http.routers.dns.rule=Host(`dns.example.com`)"
+#      - "traefik.http.routers.dns.rule=Host(`dns.saiyans.com.ve`)"
 #      - "traefik.http.services.dns.loadbalancer.server.port=5380"
 
 networks:
