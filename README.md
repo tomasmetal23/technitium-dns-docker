@@ -1,7 +1,7 @@
 # Technitium dns server 
 
  ## Software information version
- * Technitium Version 6.0
+ * Technitium Version 6.3
  * DOTNET_VERSION=5.0.3
  
  ## Run deploy
