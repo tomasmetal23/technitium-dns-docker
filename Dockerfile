@@ -17,7 +17,6 @@ RUN curl -SL --output dotnet.tar.gz https://dotnetcli.azureedge.net/dotnet/Runti
     && tar -zxf DnsServerPortable.tar.gz -C /etc/dns/ \
     && rm DnsServerPortable.tar.gz 
 
-VOLUME /etc/dns
 
 EXPOSE 53 5380
 
