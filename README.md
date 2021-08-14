@@ -17,3 +17,6 @@ Inside the folder repo make your personal settings in the compose you can enable
 ![Done](https://i.imgur.com/FXecqoG.png)
 
 https://hub.docker.com/r/deathmetall/technitiumdns
+
+Scrapped by the official version
+https://hub.docker.com/r/technitium/dns-server
