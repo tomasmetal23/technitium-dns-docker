@@ -2,7 +2,7 @@ version: "3"
 
 services:
   dns:
-    image: deathmetall/technitiumdns:latest-6.0
+    image: technitium/dns-server:latest
 #    build: .
     restart: always
     container_name: dns
